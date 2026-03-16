@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maitri | The Brave Ascent</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;1,700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --accent: #d4af37;
+            --dark: #0a0a0a;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--dark); color: white; font-family: 'Montserrat', sans-serif; overflow-x: hidden; cursor: none; }
+
+        /* Custom Liquid Cursor */
+        #cursor {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.07) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+
+        /* Hero / Main Mountain Photo */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), var(--dark)),
+                        url('https://i.postimg.cc/66YxrLd0/IMG20260305064719.jpg') center/cover fixed;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: clamp(3rem, 15vw, 9rem);
+            letter-spacing: 20px;
+            text-transform: uppercase;
+            font-weight: 400;
+            animation: fadeIn 3s ease;
+        }
+
+        .hero p {
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            color: var(--accent);
+        }
+
+        /* Music Toggle */
+        .music-ctrl {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: var(--accent);
+            padding: 10px 20px;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 50px;
+        }
+
+        /* Scroll Progress Bar */
+        #progress {
+            position: fixed;
+            top: 0; left: 0; height: 3px;
+            background: var(--accent);
+            z-index: 1000;
+        }
+
+        /* Story Section */
+        .story-container { padding: 100px 10%; max-width: 1400px; margin: auto; }
+
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 250px;
+            gap: 50px;
+        }
+
+        .row:nth-child(even) { flex-direction: row-reverse; }
+
+        /* Liquid Glass Photo Frame */
+        .photo-frame {
+            width: 50%;
+            padding: 15px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            transition: 0.5s;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            display: block;
+            border-radius: 2px;
+            transition: 1.5s transform cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .photo-frame:hover img { transform: scale(1.05); }
+
+        .text-box { width: 40%; }
+        .text-box h2 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .text-box p { font-weight: 200; font-size: 1.1rem; line-height: 1.8; opacity: 0.8; }
+
+        /* Birthday Finale with Image BG */
+        .finale {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://i.postimg.cc/zvtmq8Jt/IMG20260305080705.jpg') center/cover no-repeat;
+            position: relative;
+        }
+
+        .finale h2 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            margin-bottom: 20px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .bday-date { color: var(--accent); letter-spacing: 5px; margin-bottom: 40px; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @media (max-width: 900px) {
+            .row, .row:nth-child(even) { flex-direction: column; text-align: center; }
+            .photo-frame, .text-box { width: 100%; }
+            body { cursor: auto; }
+            #cursor { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cursor"></div>
+    <div id="progress"></div>
+
+
+    <section class="hero">
+        <div data-aos="zoom-out" data-aos-duration="2000">
+            <p>A Legend Since 2003</p>
+            <h1>MAITRI</h1>
+            <p style="margin-top: 20px; opacity: 0.6;">Scroll To Witness The Journey</p>
+        </div>
+    </section>
+
+    <div class="story-container">
+        
+        <div class="row">
+            <div class="photo-frame" data-aos="zoom-in-up">
+                <img src="https://i.postimg.cc/G3qnFJkJ/IMG20260302100549.jpg" alt="The Decision">
+            </div>
+            <div class="text-box" data-aos="fade-left">
+                <h2>The Decision</h2>
+                <p>It started with a choice to step out of the comfort zone. Elegant, composed, but harboring a secret fear of the heights ahead.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="photo-frame" data-aos="zoom-in-up">
+                <img src="https://i.postimg.cc/HsnDBc2v/IMG20260303175920.jpg" alt="Preparation">
+            </div>
+            <div class="text-box" data-aos="fade-right">
+                <h2>The Grit</h2>
+                <p>Tying the laces tight. Every knot a promise to herself: no matter how steep the climb, she wouldn't look back.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="photo-frame" data-aos="zoom-in-up">
+                <img src="https://i.postimg.cc/yYx4vgPF/IMG20260303172325.jpg" alt="The Struggle">
+            </div>
+            <div class="text-box" data-aos="fade-left">
+                <h2>The Fall</h2>
+                <p>Even in the moments of injury and pain, she found a way to smile. Surrounded by support, she turned a fall into a lesson in bravery.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="photo-frame" data-aos="zoom-in-up">
+                <img src="https://i.postimg.cc/zvtmq8Jt/IMG20260305080705.jpg" alt="Success">
+            </div>
+            <div class="text-box" data-aos="fade-right">
+                <h2>The Triumph</h2>
+                <p>Standing tall where the air is thin. She didn't just conquer the mountain; she conquered the version of herself that said she couldn't.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <section class="finale">
+        <div data-aos="zoom-out-up">
+            <p class="bday-date">MARCH 16, 2026</p>
+            <h2>Happy 23rd Birthday, Maitri</h2>
+            <p style="max-width: 600px; margin: auto; font-weight: 200;">May your year be as breathtaking as the view from the top.</p>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1500, once: false });
+
+        // Cursor Movement
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Music Logic
+        const music = document.getElementById('bday-music');
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                document.querySelector('.music-ctrl').innerText = "Pause Music";
+            } else {
+                music.pause();
+                document.querySelector('.music-ctrl').innerText = "Play Music";
+            }
+        }
+
+        // Progress Bar
+        window.onscroll = () => {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress").style.width = scrolled + "%";
+        };
+    </script>
+</body>
+</html>
